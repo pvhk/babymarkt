@@ -1,0 +1,29 @@
+{% extends 'babymarkt_app/base.html' %}
+{% block content %}
+<main>
+  <h1 class="text-center mt-5">Ma nouvelle annonce</h1>
+  <div class="form-center">
+     <form action="/ads/new/" class="p-5 bg-white" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+      {% for field in form%}
+      <div class="row form-group">
+        <div class="col-md-12">
+        {{field.label}}
+         {{field}}
+        {% for error in field.errors %}
+          <div class="invalid-feedback d-block">
+            {{ error }}
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+      <div class="row form-group">
+        <div class="col-md-12">
+          <input type="submit" value="Créer mon annonce" class="btn btn-primary py-2 px-4 text-white">
+        </div>
+      </div>
+    </form>
+  </div>
+</main>
+{% endblock %}

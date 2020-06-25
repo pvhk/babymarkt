@@ -1,0 +1,37 @@
+{% extends 'babymarkt_app/base.html' %}
+{% block content %}
+
+<div class="site-blocks-cover overlay" style="background-image: url(images/hero_2.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+      <div class="container">
+      {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+    <main role="main" class="container mt-5">
+        <div class="mb-5">
+            <h1>La plus grande place de marché d'affaires pour bébés </h1>
+        </div>
+        <form action="/ads/search/" class="row">
+            <div class="form-group col-lg-6 col-md-12">
+                <input name="query" type="text" class="form-control" id="query" placeholder="Que recherchez vous ?"/>
+            </div>
+            <div class="form-group col-lg-2 col-md-12">
+                <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+        </form>
+    <h2 class="mt-5 mb-3">Catégories</h2>
+    <div class="row">
+    {% for category in most_popular_categories%}
+      <div class="card col-lg-3 col-md-12 mr-1 ml-1 mt-1 mb-1">
+        <div class="card-body">
+          <h5 class="card-title">{{category.name}}</h5>
+          <a href={% url 'category_list_ads' category.name%} class="btn btn-primary">Voir les annonces</a>
+        </div>
+      </div>
+      {%endfor%}
+    </div>
+    </main>
+{% endblock %}

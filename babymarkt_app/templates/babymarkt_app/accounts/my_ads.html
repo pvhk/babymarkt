@@ -1,0 +1,21 @@
+{% extends 'babymarkt_app/base.html' %}
+{% block content %}
+<main class="container"> 
+  <h1 class="text-center mt-5">Les annonces de {{user.username}}</h1>
+
+    <div class="row mt-5">
+    {% for ad in my_ads%}
+      <div class="card col-lg-3 col-md-12 mr-1 ml-1 mt-1 mb-1">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{ad.title}}</h5>
+          <p class="card-text">{{ad.text}}</p>
+          <a href={% url 'detail_ad' ad.id%} class="btn btn-primary">Voir</a>
+          <a href={% url 'edit_ad' ad.id%} class="btn btn-secondary">Modifier</a>
+          <a href={% url 'delete_ad' ad.id%} class="btn btn-danger">Supprimer</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+</main>
+{% endblock %}

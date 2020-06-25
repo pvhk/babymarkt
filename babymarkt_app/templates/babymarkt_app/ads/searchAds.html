@@ -1,0 +1,19 @@
+{% extends 'babymarkt_app/base.html' %}
+{% block content %}
+<main class="container">
+    <div class="row">
+        {% if ads.hits|length == 0 %}
+        Pas de résultats
+        {% endif %}
+    {% for ad in ads.hits %}
+        <div class="card col-lg-3 col-md-12 mr-1 ml-1 mt-1 mb-1">
+            <div class="card-body">
+                <h5 class="card-title">{{ad.document.title}}</h5>
+                <p class="card-text">{{ad.document.price}} €</p>
+                <a href={% url 'detail_ad' ad.document.bdd_id%} class="btn btn-primary">Voir l'annonce</a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</main>
+{% endblock %}
